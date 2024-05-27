@@ -18,7 +18,7 @@ def predict(model):
 
 
 #reading the csv file
-df=pd.read_csv(r"E:\project\flat price\finalfalt.csv")
+df=pd.read_csv("E:/project/flat price/finalfalt.csv")
 
 #streamling app pagelayout and background and title
 st.set_page_config(layout="wide")
