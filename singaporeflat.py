@@ -18,7 +18,17 @@ def predict(model):
 
 
 #reading the csv file
-df=pd.read_csv(r"E:\project\flat price\finalfalt.csv")
+# File ID and URL
+file_id = '17Z0A8dq2bYmFUlIKZxKgAaPTBplWFcvH'
+url = f'https://drive.google.com/uc?id={file_id}'
+
+# Output file name
+output = 'downloaded_file.csv'
+
+
+
+# Read the CSV file into a DataFrame
+df = pd.read_csv(output)
 
 #streamling app pagelayout and background and title
 st.set_page_config(layout="wide")
