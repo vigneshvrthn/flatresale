@@ -4,12 +4,15 @@ import numpy as np
 import streamlit as st
 from streamlit_option_menu import option_menu
 import pickle
+import requests
+import zipfile
+from io import BytesIO
 
 
 
 # craeting the function for reading the model by pickle and predict by it 
 def modle_data():
-    with open(r"E:\project\flat price\resale","rb") as file:
+    with open(r"E:\project\resale","rb") as file:
         model=pickle.load(file)
         return model
 def predict(model):
@@ -18,8 +21,22 @@ def predict(model):
 
 
 #reading the csv file
-df=pd.read_csv("E:/project/flat price/finalfalt.csv")
+# URL of the zip file on GitHub
+zip_url = "https://github.com/vigneshvrthn/flatresale/raw/main/finalfalt.zip"
 
+# Name of the CSV file inside the zip archive
+csv_filename = "finalfalt.csv"
+
+# Download the zip file from the URL
+response = requests.get(zip_url)
+zip_data = BytesIO(response.content)
+
+# Extract the CSV file from the zip archive
+with zipfile.ZipFile(zip_data, 'r') as zip_ref:
+    zip_ref.extract(csv_filename)
+
+# Load the CSV file into a DataFrame
+df = pd.read_csv(csv_filename)
 #streamling app pagelayout and background and title
 st.set_page_config(layout="wide")
 st.title("FLAT RESALE VALUE")
